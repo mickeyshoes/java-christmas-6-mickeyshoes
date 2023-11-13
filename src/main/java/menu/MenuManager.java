@@ -4,8 +4,9 @@ import food.Food;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static food.FoodException.FOOD_IS_NOT_EXIST_IN_MENU;
+import static menu.MenuException.FOOD_IS_NOT_EXIST_IN_MENU;
 import static food.FoodException.FOOD_NAME_IS_DUPLICATED;
 import static food.FoodValidator.foodNameIsDuplicate;
 import static menu.MenuValidator.foodIsExistInMenu;
@@ -23,7 +24,9 @@ public class MenuManager {
     }
 
     public void initMenu(List<Food> foods){
-        foodNameIsDuplicate(foods);
+        foodNameIsDuplicate(foods.stream()
+                .map(Food::getName)
+                .collect(Collectors.toList()));
         this.menu = new Menu(foods);
     }
 

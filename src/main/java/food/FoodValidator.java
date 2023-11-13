@@ -29,13 +29,13 @@ public class FoodValidator {
         return false;
     }
 
-    public static boolean foodNameIsDuplicate(List<Food> foods){
-        Set<Food> distinctFood = new HashSet<>();
-        Optional<Food> duplicateFood = foods.stream()
-                .filter(food -> distinctFood.add(food) == false)
+    public static boolean foodNameIsDuplicate(List<String> foodsName){
+        Set<String> distinctFood = new HashSet<>();
+        Optional<String> duplicateFood = foodsName.stream()
+                .filter(foodName -> distinctFood.add(foodName) == false)
                 .findFirst();
         if(duplicateFood.isPresent()){
-            String foodName = duplicateFood.get().getName();
+            String foodName = duplicateFood.get();
             throw new IllegalArgumentException(FOOD_NAME_IS_DUPLICATED.getMessageWithArgs(foodName));
         }
         return false;

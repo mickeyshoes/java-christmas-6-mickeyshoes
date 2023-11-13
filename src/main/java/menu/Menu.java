@@ -2,15 +2,9 @@ package menu;
 
 import food.Food;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import static food.FoodException.FOOD_IS_NOT_EXIST_IN_MENU;
-import static food.FoodException.FOOD_NAME_IS_DUPLICATED;
-import static food.FoodValidator.foodNameIsDuplicate;
 
 public class Menu {
 
