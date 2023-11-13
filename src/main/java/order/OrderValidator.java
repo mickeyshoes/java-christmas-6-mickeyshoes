@@ -5,7 +5,6 @@ import menu.MenuManager;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 import static food.FoodValidator.foodNameIsDuplicate;
 import static order.Order.MAX_ORDER_COUNT;
