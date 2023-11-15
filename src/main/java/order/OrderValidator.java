@@ -1,9 +1,12 @@
 package order;
 
+import food.Category;
+import food.OrderFood;
 import menu.MenuManager;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static food.FoodValidator.foodNameIsDuplicate;
 import static order.Order.MAX_ORDER_COUNT;
@@ -13,7 +16,6 @@ public class OrderValidator {
 
     public static final int MINIMUN_COUNT_OF_FOODS = 0;
 
-    //메뉴의 개수는 1 이상의 숫자만 입력되도록 해주세요
     public static boolean foodCountIsAvailable(int totalFoodCount){
         if(totalFoodCount <0 || totalFoodCount > MAX_ORDER_COUNT){
             throw new IllegalStateException(ORDER_FOOD_NOT_OVER_MAXIMUM.getMessageWithArgs(MAX_ORDER_COUNT));
@@ -21,8 +23,6 @@ public class OrderValidator {
         return true;
     }
 
-    //중복 메뉴를 입력한 경우
-    //고객이 메뉴판에 없는 메뉴를 입력하는 경우
     public static boolean checkFoodNameIsValid(List<String> foodNames, MenuManager menuManager){
         try{
             foodNameIsDuplicate(foodNames);
@@ -52,8 +52,15 @@ public class OrderValidator {
     }
 
 
-    public static boolean canOrder(){
+    public static boolean isOrderHasOnlyDrink(List<OrderFood> orderFoods){
 
+        List<OrderFood> filterFoods = orderFoods.stream()
+                .filter(orderFood -> orderFood.getCategory() == Category.DRINK)
+                .collect(Collectors.toList());
+
+        if(filterFoods.size() == orderFoods.size()){
+            throw new IllegalArgumentException(INVALID_ORDER_FROM_USER.getMessage());
+        }
 
         return true;
     }

@@ -70,11 +70,7 @@ public class OrderController {
     public void start(){
         view.printInitMessage();
         LocalDate date = getDate();
-        Map<String, Integer> orderMap = getOrder();
-        Order order = orderGenerator.makeOrder(
-                date,
-                orderMap.keySet().stream().toList(),
-                orderMap.values().stream().toList());
+        Order order = makeOrder(date);
         applyPromotion(order, date);
         order.setBadge();
         view.printOrderWithPromotionResults(order);
@@ -93,16 +89,19 @@ public class OrderController {
         return date;
     }
 
-    public Map<String, Integer> getOrder(){
-        Map<String, Integer> orderMap = null;
-        while(orderMap == null){
+    public Order makeOrder(LocalDate date){
+        Order order = null;
+        while(order == null){
             try{
-                orderMap = view.printOrderFoodsAndGet();
+                Map<String, Integer> orderMap = view.printOrderFoodsAndGet();
+                order = orderGenerator.makeOrder(date,
+                        orderMap.keySet().stream().toList(),
+                        orderMap.values().stream().toList());
             }catch (IllegalArgumentException e){
                 view.printError(e.getMessage());
             }
         }
-        return orderMap;
+        return order;
     }
 
     public void applyPromotion(Order order, LocalDate date){

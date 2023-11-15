@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static order.OrderValidator.isOrderHasOnlyDrink;
 import static promotion.PromotionType.FREEBIE;
 
 public class Order {
@@ -24,11 +25,17 @@ public class Order {
     private ChristmasBadge badge;
 
     public Order(LocalDate orderDate, List<OrderFood> orderFoods){
+        validate(orderFoods);
         this.date = orderDate;
         this.foods = orderFoods;
         promotionNames = new ArrayList<>();
         discountCosts = new ArrayList<>();
         freebies = new ArrayList<>();
+    }
+
+    private boolean validate(List<OrderFood> orderFoods){
+        isOrderHasOnlyDrink(orderFoods);
+        return true;
     }
 
     public void applyPromotion(Promotion promotion){
