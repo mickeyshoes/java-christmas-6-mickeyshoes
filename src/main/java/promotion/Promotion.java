@@ -32,7 +32,7 @@ public abstract class Promotion {
     }
 
     public boolean dateInRange(LocalDate date){
-        return start.isAfter(date) && end.isBefore(date);
+        return date.isAfter(start) && date.isBefore(end);
     }
 
     public String getName() { return name; }

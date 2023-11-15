@@ -8,8 +8,6 @@ import static food.FoodValidator.priceIsIn;
 
 public class Food {
 
-    private static final DecimalFormat priceFormat = new DecimalFormat("###,###");
-
     private final Category category;
     private final String name;
     private final int price;
@@ -30,10 +28,6 @@ public class Food {
     public String getName() { return name; }
 
     public int getPrice() { return price; }
-
-    public String getNameWithPrice(){
-        return String.format("%s(%d)", name, priceFormat.format(price));
-    }
 
     @Override
     public boolean equals(Object o) {

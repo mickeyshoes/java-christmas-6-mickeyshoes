@@ -9,7 +9,7 @@ import java.util.List;
 public class SpecificDaysDiscount extends Promotion{
 
     private final List<LocalDate> specificDays;
-    protected SpecificDaysDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
+    public SpecificDaysDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
                                    List<LocalDate> specificDays) {
         super(name, start, end, type, offPrice);
         this.specificDays = specificDays;

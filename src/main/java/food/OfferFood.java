@@ -25,6 +25,10 @@ public class OfferFood implements Comparable<OfferFood>{
         return ea * food.getPrice();
     }
 
+    public String getNameWithEa(){
+        return String.format("%s %d개", food.getName(), ea);
+    }
+
     @Override
     public int compareTo(OfferFood o) {
         return Integer.compare(limit, o.limit);

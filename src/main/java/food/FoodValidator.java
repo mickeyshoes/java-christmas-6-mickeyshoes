@@ -10,13 +10,13 @@ import static food.FoodException.*;
 public class FoodValidator {
 
     public static final int MINIMUM_COST = 0;
-    public static final int MAXIMUM_COST = Integer.MAX_VALUE;
+    public static final int MAXIMUM_COST = 2_100_000_000;
     public static final int MINIMUM_FOOD_NAME_LEN = 1;
 
     public static boolean priceIsIn(int price){
-        if(price > MINIMUM_COST && price <= MAXIMUM_COST){
+        if(price <= MINIMUM_COST || price >= MAXIMUM_COST){
             throw new IllegalStateException(
-                    FOOD_PRICE_MUST_IN_RANGE.getMessageWithArgs(MAXIMUM_COST, MAXIMUM_COST));
+                    FOOD_PRICE_MUST_IN_RANGE.getMessageWithArgs(MINIMUM_COST, MAXIMUM_COST));
         }
         return true;
     }

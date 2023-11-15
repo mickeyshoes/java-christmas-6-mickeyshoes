@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class SpecialOffer extends Promotion{
     //food, count, limit
     private final List<OfferFood> offerFoods;
-    protected SpecialOffer(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
+    public SpecialOffer(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
                            List<OfferFood> offerFoods) {
         super(name, start, end, type, offPrice);
         this.offerFoods = new ArrayList<>(offerFoods);
@@ -34,7 +34,7 @@ public class SpecialOffer extends Promotion{
 
     private Stream<OfferFood> findOfferFoodByCondition(int totalOrderPrice){
         return offerFoods.stream()
-                .filter(offerFood -> offerFood.getLimit() >= totalOrderPrice);
+                .filter(offerFood -> offerFood.getLimit() <= totalOrderPrice);
     }
 
     private Optional<OfferFood> offerFreebieByPolicy(int totalOrderPrice){
@@ -45,7 +45,8 @@ public class SpecialOffer extends Promotion{
     @Override
     public boolean isTarget(LocalDate date, List<OrderFood> orderFoods) {
         int totalOrderPrice = getTotalPriceByOrder(orderFoods);
-        return canOfferFreebies(totalOrderPrice);
+        return dateInRange(date)
+                && canOfferFreebies(totalOrderPrice);
     }
 
     @Override

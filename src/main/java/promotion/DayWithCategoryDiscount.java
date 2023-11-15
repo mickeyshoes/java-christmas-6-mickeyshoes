@@ -14,7 +14,7 @@ public class DayWithCategoryDiscount extends Promotion{
     private Set<DayOfWeek> targetDays;
     private Set<Category> targetCategories;
 
-    protected DayWithCategoryDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
+    public DayWithCategoryDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
                                       Set<DayOfWeek> targetDays, Set<Category> targetCategories) {
         super(name, start, end, type, offPrice);
         this.targetDays = targetDays;
@@ -31,7 +31,7 @@ public class DayWithCategoryDiscount extends Promotion{
     }
 
     private boolean hasSameCategory(OrderFood orderFood){
-        return targetCategories.contains(orderFood);
+        return targetCategories.contains(orderFood.getCategory());
     }
 
     private int getSameCategoryFoodCount(List<OrderFood> orderFoods){
@@ -51,7 +51,7 @@ public class DayWithCategoryDiscount extends Promotion{
 
     @Override
     public boolean isTarget(LocalDate date, List<OrderFood> orderFoods) {
-        return super.dateInRange(date)
+        return dateInRange(date)
                 && hasSameDay(date)
                 && hasSameCategories(orderFoods);
     }

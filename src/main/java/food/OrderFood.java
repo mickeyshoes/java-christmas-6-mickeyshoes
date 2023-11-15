@@ -16,6 +16,6 @@ public class OrderFood extends Food {
     }
 
     public String getNameWithCount(){
-        return String.format("%s %d개\n", this.getName(), this.count);
+        return String.format("%s %d개", this.getName(), this.count);
     }
 }

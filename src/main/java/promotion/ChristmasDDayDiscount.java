@@ -8,19 +8,21 @@ import java.util.List;
 
 public class ChristmasDDayDiscount extends Promotion{
 
-    private final int offPricePerDay = 100;
-    protected ChristmasDDayDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice) {
+    private final int offPricePerDay;
+    public ChristmasDDayDiscount(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
+                                    int offPricePerDay) {
         super(name, start, end, type, offPrice);
+        this.offPricePerDay = offPricePerDay;
     }
 
     @Override
     public boolean isTarget(LocalDate date, List<OrderFood> orderFoods) {
-        return super.dateInRange(date);
+        return dateInRange(date);
     }
 
     @Override
     public int discount(LocalDate date, List<OrderFood> orderFoods) {
-        int dayCount = super.getStart().compareTo(date);
+        int dayCount = date.compareTo(getStart());
         return (dayCount * offPricePerDay) + super.getOffPrice();
     }
 
