@@ -22,7 +22,6 @@ public class OrderGenerator {
     }
 
     public Order makeOrder(LocalDate orderDate, List<String> foodNames, List<Integer> foodCounts){
-        orderDateInRange(orderDate);
         return new Order(orderDate, makeOrderFoods(foodNames, foodCounts));
     }
 

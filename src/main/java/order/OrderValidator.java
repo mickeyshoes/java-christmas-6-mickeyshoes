@@ -2,7 +2,6 @@ package order;
 
 import menu.MenuManager;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,12 +11,7 @@ import static order.OrderException.*;
 
 public class OrderValidator {
 
-    // 나중에 이벤트 생기면 그쪽으로 옮겨야 할듯
-    public static final int EVENT_YEAR = 2023;
-    public static final int EVENT_MONTH = 12;
     public static final int MINIMUN_COUNT_OF_FOODS = 0;
-    public static final int FIRST_DAY_OF_MONTH = 1;
-    public static final int LAST_DAY_OF_MONTH = 31;
 
     //메뉴의 개수는 1 이상의 숫자만 입력되도록 해주세요
     public static boolean foodCountIsAvailable(int totalFoodCount){
@@ -47,16 +41,6 @@ public class OrderValidator {
             throw new IllegalArgumentException(INVALID_ORDER_FROM_USER.getMessage());
         }
         foodCountIsAvailable(totalCount.get());
-        return true;
-    }
-
-    //input 에서 들어온 valid check 니까 1일부터 31일 사이인지 체크해야 하는데 달도 고려해야한다.
-    //LocalDate class에서 지원하는거 있는지 확인
-    public static boolean orderDateInRange(LocalDate orderDate){
-        int date = orderDate.getDayOfMonth();
-        if(date < FIRST_DAY_OF_MONTH || date > LAST_DAY_OF_MONTH){
-            throw new IllegalArgumentException(INVALID_DATE.getMessage());
-        }
         return true;
     }
 

@@ -1,7 +1,5 @@
 package food;
 
-import food.Food;
-
 public class OrderFood extends Food {
 
     private int count;
