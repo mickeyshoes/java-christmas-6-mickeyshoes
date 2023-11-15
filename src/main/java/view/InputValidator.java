@@ -45,7 +45,9 @@ public class InputValidator {
                 .count();
         try{
             Math.toIntExact(filtered);
-            orderCounts.stream().peek(orderCount -> foodCountIsAvailable(orderCount));
+            for(int count : orderCounts){
+                foodCountIsAvailable(count);
+            }
         }catch (ArithmeticException e){
             throw new IllegalArgumentException(INVALID_ORDER_FROM_USER.getMessage());
         }catch (IllegalStateException e){

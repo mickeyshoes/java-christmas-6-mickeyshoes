@@ -17,7 +17,7 @@ public class OrderValidator {
     public static final int MINIMUN_COUNT_OF_FOODS = 0;
 
     public static boolean foodCountIsAvailable(int totalFoodCount){
-        if(totalFoodCount <0 || totalFoodCount > MAX_ORDER_COUNT){
+        if(totalFoodCount <=0 || totalFoodCount > MAX_ORDER_COUNT){
             throw new IllegalStateException(ORDER_FOOD_NOT_OVER_MAXIMUM.getMessageWithArgs(MAX_ORDER_COUNT));
         }
         return true;

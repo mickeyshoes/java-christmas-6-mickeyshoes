@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static order.OrderValidator.*;
+import static view.InputValidator.orderCountOverMinimumLimit;
 
 public class OrderGenerator {
 
@@ -22,6 +23,7 @@ public class OrderGenerator {
     }
 
     public Order makeOrder(LocalDate orderDate, List<String> foodNames, List<Integer> foodCounts){
+        orderCountOverMinimumLimit(foodCounts);
         return new Order(orderDate, makeOrderFoods(foodNames, foodCounts));
     }
 

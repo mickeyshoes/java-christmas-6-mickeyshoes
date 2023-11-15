@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class utils {
     public static final DecimalFormat priceFormat = new DecimalFormat("###,###");
     public static String checkTargetExist(String target, String replaceWords){
-        if(target.isBlank() || target.isEmpty() || target == null){
+        if(target == null || target.isBlank() || target.isEmpty()){
             return replaceWords;
         }
         return target;
