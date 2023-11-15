@@ -22,7 +22,7 @@ public class FoodValidator {
     }
 
     public static boolean nameIsNull(String name){
-        if(name.isBlank() || name.isEmpty() || name == null){
+        if(name == null || name.isBlank() || name.isEmpty()){
             throw new IllegalStateException(
                     FOOD_NAME_LENGTH.getMessageWithArgs(MINIMUM_FOOD_NAME_LEN));
         }

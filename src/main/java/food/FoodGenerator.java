@@ -3,9 +3,6 @@ package food;
 import java.util.ArrayList;
 import java.util.List;
 
-import static food.Category.*;
-import static food.Category.DRINK;
-
 public class FoodGenerator {
 
     private static final FoodGenerator foodGenerator = new FoodGenerator();

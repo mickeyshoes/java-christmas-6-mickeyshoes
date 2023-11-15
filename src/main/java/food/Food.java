@@ -1,6 +1,5 @@
 package food;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static food.FoodValidator.nameIsNull;
