@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SpecialOffer extends Promotion{
-    //food, count, limit
+
     private final List<OfferFood> offerFoods;
     public SpecialOffer(String name, LocalDate start, LocalDate end, PromotionType type, int offPrice,
                            List<OfferFood> offerFoods) {
         super(name, start, end, type, offPrice);
         this.offerFoods = new ArrayList<>(offerFoods);
-        Collections.sort(offerFoods, Collections.reverseOrder());
+        Collections.sort(this.offerFoods, Collections.reverseOrder());
     }
 
     private int getTotalPriceByOrder(List<OrderFood> orderFoods){
