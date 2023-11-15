@@ -15,6 +15,7 @@ public class OrderValidator {
     // 나중에 이벤트 생기면 그쪽으로 옮겨야 할듯
     public static final int EVENT_YEAR = 2023;
     public static final int EVENT_MONTH = 12;
+    public static final int MINIMUN_COUNT_OF_FOODS = 0;
     public static final int FIRST_DAY_OF_MONTH = 1;
     public static final int LAST_DAY_OF_MONTH = 31;
 
@@ -55,6 +56,13 @@ public class OrderValidator {
         int date = orderDate.getDayOfMonth();
         if(date < FIRST_DAY_OF_MONTH || date > LAST_DAY_OF_MONTH){
             throw new IllegalArgumentException(INVALID_DATE.getMessage());
+        }
+        return true;
+    }
+
+    public static boolean foodCountOverZero(int count){
+        if(count <= MINIMUN_COUNT_OF_FOODS){
+            throw new IllegalArgumentException(OFFER_FOOD_MUST_OVER_MINUMUM.getMessageWithArgs(MINIMUN_COUNT_OF_FOODS));
         }
         return true;
     }
